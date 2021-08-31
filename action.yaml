@@ -1,0 +1,32 @@
+name: Setup Monorepo node app
+description: Prepare everything needed for a Nodejs app in a monorepo (cache, dependencies, ...)
+
+inputs:
+  node-version:
+    description: Nodejs version to use
+    required: true
+    default: '14'
+  working-directory:
+    description: Directory of the node application in the mono repo
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: echo "🤙 Sparse checkout ${{inputs.working-directory}}"
+    - uses: gogaille/sparse-checkout@v0
+      with:
+        patterns: ${{inputs.working-directory}}
+    - shell: bash
+      run: echo "⚙ Setup node version ${{inputs.node-version}}"
+    - uses: actions/setup-node@v2
+      with:
+        node-version: ${{inputs.node-version}}
+    - shell: bash
+      run: echo "📦 Install dependencies"
+    - shell: bash
+      name: Install dependencies
+      run: |
+         cd ${{inputs.working-directory}}
+         yarn install --immutable --immutable-cache
