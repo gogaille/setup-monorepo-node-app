@@ -15,7 +15,7 @@ runs:
   steps:
     - shell: bash
       run: echo "🤙 Sparse checkout ${{inputs.working-directory}}"
-    - uses: gogaille/sparse-checkout@v0
+    - uses: gogaille/sparse-checkout@v0.1
       with:
         patterns: ${{inputs.working-directory}}
     - shell: bash
