@@ -20,6 +20,14 @@ Setup a node app in a monorepo:
 ```yaml
 - uses: gogaille/setup-monorepo-node-app
   with:
-    node-version: '14'
-    working-directory: 'some-node-app-dir'
+    node-version: 14
+    working-directory: some-node-app-dir
+```
+
+```yaml
+- uses: gogaille/setup-monorepo-node-app
+  with:
+    node-version: 14
+    working-directory: some-node-app-dir
+    other-patterns-to-sparse-checkout: .github
 ```

@@ -5,10 +5,14 @@ inputs:
   node-version:
     description: Nodejs version to use
     required: true
-    default: '14'
+    default: "14"
   working-directory:
     description: Directory of the node application in the mono repo
     required: true
+  other-patterns-to-sparse-checkout:
+    description: Other patterns to sparse checkout
+    required: false
+    default: ""
 
 runs:
   using: composite
@@ -17,7 +21,7 @@ runs:
       run: echo "🤙 Sparse checkout ${{inputs.working-directory}}"
     - uses: gogaille/sparse-checkout@v0.1
       with:
-        patterns: ${{inputs.working-directory}}
+        patterns: ${{inputs.working-directory}} ${{inputs.other-patterns-to-sparse-checkout}}
     - shell: bash
       run: echo "⚙ Setup node version ${{inputs.node-version}}"
     - uses: actions/setup-node@v2
@@ -28,5 +32,5 @@ runs:
     - shell: bash
       name: Install dependencies
       run: |
-         cd ${{inputs.working-directory}}
-         yarn install --immutable --immutable-cache
+        cd ${{inputs.working-directory}}
+        yarn install --immutable --immutable-cache
