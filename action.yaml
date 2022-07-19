@@ -33,4 +33,4 @@ runs:
       name: Install dependencies
       run: |
         cd ${{inputs.working-directory}}
-        yarn install --immutable --immutable-cache
+        yarn install --immutable --immutable-cache --mode=skip-build
