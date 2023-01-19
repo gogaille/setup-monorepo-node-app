@@ -24,7 +24,7 @@ runs:
         patterns: ${{inputs.working-directory}} ${{inputs.other-patterns-to-sparse-checkout}}
     - shell: bash
       run: echo "⚙ Setup node version ${{inputs.node-version}}"
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{inputs.node-version}}
     - shell: bash
