@@ -5,7 +5,7 @@ inputs:
   node-version:
     description: Nodejs version to use
     required: true
-    default: "16"
+    default: "20"
   working-directory:
     description: Directory of the node application in the mono repo
     required: true
